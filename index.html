@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fence Depot Estimator</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="container">
+      <h1>Fence Depot Estimator</h1>
+      <p class="subtitle">Enter values to generate a project estimate.</p>
+
+      <form id="estimator-form" novalidate>
+        <section class="card">
+          <h2>Project Dimensions</h2>
+          <div class="grid">
+            <label>
+              Total fence length (ft)
+              <input id="lengthFt" name="lengthFt" type="number" min="0" step="0.01" required />
+            </label>
+            <label>
+              Waste (%)
+              <input id="wastePct" name="wastePct" type="number" min="0" step="0.01" value="10" required />
+            </label>
+          </div>
+        </section>
+
+        <section class="card">
+          <h2>Fence & Gates</h2>
+          <div class="grid">
+            <label>
+              Fence type
+              <select id="fenceType" name="fenceType">
+                <option value="wood">Wood Privacy</option>
+                <option value="chainlink">Chain Link</option>
+                <option value="vinyl">Vinyl Privacy</option>
+                <option value="aluminum">Aluminum</option>
+              </select>
+            </label>
+            <label>
+              Material rate ($/ft)
+              <input id="materialRate" name="materialRate" type="number" min="0" step="0.01" required />
+            </label>
+            <label>
+              Number of gates
+              <input id="gateCount" name="gateCount" type="number" min="0" step="1" value="1" required />
+            </label>
+            <label>
+              Gate price ($ each)
+              <input id="gatePrice" name="gatePrice" type="number" min="0" step="0.01" value="350" required />
+            </label>
+          </div>
+        </section>
+
+        <section class="card">
+          <h2>Labor & Tax</h2>
+          <div class="grid">
+            <label>
+              Labor rate ($/ft)
+              <input id="laborRateFt" name="laborRateFt" type="number" min="0" step="0.01" value="18" required />
+            </label>
+            <label>
+              Labor per gate ($ each)
+              <input id="laborPerGate" name="laborPerGate" type="number" min="0" step="0.01" value="85" required />
+            </label>
+            <label>
+              Tax (%)
+              <input id="taxPct" name="taxPct" type="number" min="0" step="0.01" value="8.25" required />
+            </label>
+          </div>
+        </section>
+
+        <div class="actions">
+          <button type="submit">Calculate Estimate</button>
+          <button type="button" id="resetBtn">Reset</button>
+        </div>
+        <p id="form-error" class="error" role="alert" aria-live="polite"></p>
+      </form>
+
+      <section class="card result" aria-live="polite">
+        <h2>Estimate Result</h2>
+        <dl class="summary">
+          <div><dt>Adjusted length</dt><dd id="outAdjustedLength">—</dd></div>
+          <div><dt>Material cost</dt><dd id="outMaterialCost">—</dd></div>
+          <div><dt>Gate cost</dt><dd id="outGateCost">—</dd></div>
+          <div><dt>Labor cost</dt><dd id="outLaborCost">—</dd></div>
+          <div><dt>Subtotal</dt><dd id="outSubtotal">—</dd></div>
+          <div><dt>Tax</dt><dd id="outTaxAmount">—</dd></div>
+          <div class="total"><dt>Total</dt><dd id="outGrandTotal">—</dd></div>
+        </dl>
+      </section>
+    </main>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
